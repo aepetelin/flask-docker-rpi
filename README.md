@@ -1,4 +1,5 @@
-# [Alpine OS](https://hub.docker.com/_/alpine/) running [Python Flask](http://flask.pocoo.org/) (python 3.5)
+## [Alpine OS](https://hub.docker.com/_/alpine/) running python 3.5 [Flask](http://flask.pocoo.org/) for Raspberry Pi 
+#### 79MB image size
 
 ---
 This image is used to run flask applications. To start a container use
@@ -75,3 +76,6 @@ if __name__ == '__main__':
 ```
 
 To get the command line output of your app use `docker logs -f CONTAINER_ID/NAME`.
+
+
+(Link to original repository: <https://github.com/jazzdd86/alpine-flask>)
