@@ -1,4 +1,5 @@
-FROM hypriot/rpi-alpine-scratch
+#FROM hypriot/rpi-alpine-scratch
+FROM forumi0721/alpine-armv7h-gpio-rpi
 MAINTAINER Andrew Petelin <petelin78@gmail.com>
 
 RUN apk update && \
@@ -11,7 +12,10 @@ apk add bash
 # basic flask environment
 RUN apk add git nginx uwsgi uwsgi-python3 && \ 
 	pip3 install --upgrade pip && \
-	pip3 install flask
+	pip3 install flask 
+
+RUN apk update && apk add gcc && apk add python3-dev 
+RUN apk add musl-dev && pip3 install RPi.GPIO
 
 # application folder
 ENV APP_DIR /app
@@ -20,7 +24,9 @@ ENV APP_DIR /app
 RUN mkdir ${APP_DIR} \
 	&& chown -R nginx:nginx ${APP_DIR} \
 	&& chmod 777 /run/ -R \
-	&& chmod 777 /root/ -R
+	&& chmod 777 /root/ -R 
+
+
 VOLUME ${APP_DIR}
 WORKDIR ${APP_DIR}
 
