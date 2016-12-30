@@ -29,11 +29,12 @@ def readPin(pin):
       time.sleep(1)
       GPIO.output(7, GPIO.LOW)
 
-      #GPIO.setup(pinn, GPIO.IN)
-      #if GPIO.input(pinn):
-      #   response = "Pin number " + pin + " is high!"
-      #else:
-      #   response = "Pin number " + pin + " is low!"
+      response = "Pin (ok): " + pin 
+      GPIO.setup(pinn, GPIO.IN)
+      if GPIO.input(pinn):
+        response = "Pin number " + pin + " is high!"
+      else:
+         response = "Pin number " + pin + " is low!"
    except:
       response = "There was an error reading pin " + pin + ". " \
         + str(sys.exc_info()[0]) \

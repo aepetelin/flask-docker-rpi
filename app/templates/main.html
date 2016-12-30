@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-   <head>
-      <title>{{ title }}</title>
-   </head>
+{% extends "base.html" %}
 
-   <body>
-      <h1>Hello, World!</h1>
-			<h2>{{ title }}</h2>
-      <h2>The date and time on the server is: {{ time }}</h2>
-   </body>
-</html>
+{% block content %}
+	<div>
+  	<h1>Hello, World!</h1>
+    <h3>The date and time on the server is: {{ time }}</h3>
+  </div>
+{% endblock %}
+
