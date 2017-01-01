@@ -1,47 +1,36 @@
+import rpi as RPI
 import sys
+import RPi.GPIO as GPIO
+import time
 
-class PinIO:
-    def __init__(self, addr, typ, val):
-        self.addr= addr
-        self.typ = typ
-        self.val = val
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.IN)
+GPIO.setup(11, GPIO.IN, pull_up_down = GPIO.PUD_UP);
 
-    def toString(self):
-        return str(self.addr) + ", " + str(self.typ) + ", value=" + str(self.val) 
+def event_handler(channel):
+    print("event detected: (" + str(channel) + ") " + str(GPIO.input(channel)))
 
-        
-class Rpi:
-    def __init__(self, schema):
-        self.pins = []
-        self.pins = schema[:]  
-        self.pins[0].val = True
-
-def readIO():
-    a = 1
-
-rpiSchema = [
-    PinIO(1,  "GPIO.IN",     False),
-    PinIO(2,  "GPIO.IN",     False),
-    PinIO(3,  "GPIO.IN",     False),
-    PinIO(4,  "GPIO.IN",     False),
-    PinIO(5,  "GPIO.IN",     False),
-    PinIO(6,  "GPIO.IN",     False),
-    PinIO(7,  "GPIO.IN",     False),
-    PinIO(8,  "GPIO.IN",     False),
-    PinIO(9,  "GPIO.IN",     False),
-    PinIO(10, "GPIO.IN",     False),
-    PinIO(11, "GPIO.IN",     False)
-]
+def my_callback(channel):
+    print("my callback: (" + str(channel) + ") " + str(GPIO.input(channel)))
 
 def main():
     print("Hej Ove! =)")
-    rpi = Rpi(rpiSchema)
-    
-    for x in rpi.pins:
-        print(x.toString())
-
     print("------------------")
-    print(rpi.pins[0].typ)
+
+    # setup board and pins func
+    #GPIO.setmode(GPIO.BOARD)
+    #GPIO.setup(7, GPIO.OUT)
+    #GPIO.setup(5, GPIO.IN)
+    
+    #rpi = RPI.Rpi(1, 40)
+    #print(rpi.toString())
+    #print(rpi.toJSON())
+
+    time.sleep(60)
 
 if __name__ == "__main__":
+    #GPIO.add_event_detect(11, GPIO.FALLING, callback = event_handler, bouncetime = 1000)
+    channel = 11
+    GPIO.add_event_detect(channel, GPIO.RISING, bouncetime=500)
+    GPIO.add_event_callback(channel, my_callback)
     main()

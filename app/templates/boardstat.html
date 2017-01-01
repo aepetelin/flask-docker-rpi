@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="col-md-8">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="col">Address		</th>
+					<th class="col">I/O type	</th>
+					<th class="col">I/O code	</th>
+					<th class="col">Value		</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for pin  in rpi.pins %}	
+					<tr> 
+    		       		<td class="col"> {{ pin.addr }}				</td>
+    		       		<td class="col"> {{ pin.typName }} 			</td>
+    		       		<td class="col"> {{ pin.typ }} 				</td>
+    		       		<td class="col"> {{ pin.val }} 				</td>
+    		    	</tr>
+				{% endfor %}
+			</tbody>
+      	</table>
+	</div>
+	<div class="col-md-12">&nbsp;</div>
+{% endblock %}
+

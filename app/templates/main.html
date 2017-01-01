@@ -2,8 +2,13 @@
 
 {% block content %}
 	<div>
-  	<h1>Hello, World!</h1>
-    <h3>The date and time on the server is: {{ time }}</h3>
-  </div>
+  		<h1>Paspbery PI 3. Web control tool</h1>
+    	<h6>The date/time on the server: {{ time }}</h6>
+	</div>
+
+	<ul>
+		<li><a href="/boardstat">Board state table</a></li>
+		<li><a href="/getpins">JSON data of board's pins</a></li>
+	</ul>
 {% endblock %}
 
